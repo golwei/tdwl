@@ -1,0 +1,15 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/home/home",
+    "pages/ts/ts",
+    "pages/navleft/navleft"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "gainsboro",
+    "navigationBarTitleText": "天盾网络",
+    "navigationBarTextStyle": "black"
+  }
+}

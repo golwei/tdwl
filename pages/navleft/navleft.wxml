@@ -1,0 +1,13 @@
+<view class="section">
+  <scroll-view scroll-y style="height: 100%;" bindscrolltoupper="upper" bindscrolltolower="lower" bindscroll="scroll" scroll-into-view="{{toView}}" scroll-top="{{scrollTop}}">
+
+    <!-- <view id="blue" class="scroll-view-item bc_blue"></view> -->
+    <block wx:for="{{[1, 2, 3,4,5,6,7,8,9,0,1, 2, 3,4,5,6,7,8,9,0,1, 2, 3,4,5,6,7,8,9,0]}}">
+      <!-- <view> {{index}}: </view> -->
+      <view class="scroll-view-item navleftbg {{activeIndex==index?'index-active':''}}" bindtap="navleftclick" data-indexa="{{index}}" id="{{index}}" > {{index}}:{{item}} </view>
+    </block>
+
+  </scroll-view>
+
+
+</view>
