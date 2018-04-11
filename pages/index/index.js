@@ -1,51 +1,108 @@
 //index.js
+const util = require('../../utils/util.js')
+const getSwipers = "http://wcqt.bid/admin/swipers.json"
+const getGrids = "http://wcqt.bid/admin/grids.json"
+const getProducts = "http://wcqt.bid/admin/products.json"
 //获取应用实例
-var app = getApp()
+const app = getApp()
+
 Page({
   data: {
+    products:[],
+    grids:[],
+    swipers: [],
     motto: 'Hello World',
-    userInfo: {}
+    userInfo: {},
+    hasUserInfo: false,
+    canIUse: wx.canIUse('button.open-type.getUserInfo')
   },
   //事件处理函数
-  bindViewTap: function() {
+  bindViewTap: function () {
     wx.navigateTo({
       url: '../logs/logs'
     })
   },
   onLoad: function () {
-
-    console.log('onLoad')
-    var that = this
-    //调用应用实例的方法获取全局数据
-    app.getUserInfo(function(userInfo){
-      //更新数据
-      that.setData({
-        userInfo:userInfo
+    // get-data
+    util.getData(getSwipers)
+      .then(res => {
+        this.setData({
+          swipers: res
+        })
       })
+    // get-data-end
+    // get-data
+    util.getData(getGrids)
+      .then(res => {
+        this.setData({
+          grids: res
+        })
+      })
+    // get-data-end
+    // get-data
+    util.getData(getProducts)
+      .then(res => {
+        this.setData({
+          products: res
+        })
+      })
+    // get-data-end
+    if (app.globalData.userInfo) {
+      this.setData({
+        userInfo: app.globalData.userInfo,
+        hasUserInfo: true
+      })
+    } else if (this.data.canIUse) {
+      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
+      // 所以此处加入 callback 以防止这种情况
+      app.userInfoReadyCallback = res => {
+        this.setData({
+          userInfo: res.userInfo,
+          hasUserInfo: true
+        })
+      }
+    } else {
+      // 在没有 open-type=getUserInfo 版本的兼容处理
+      wx.getUserInfo({
+        success: res => {
+          app.globalData.userInfo = res.userInfo
+          this.setData({
+            userInfo: res.userInfo,
+            hasUserInfo: true
+          })
+        }
+      })
+    }
+  },
+  getUserInfo: function (e) {
+    console.log(e)
+    app.globalData.userInfo = e.detail.userInfo
+    this.setData({
+      userInfo: e.detail.userInfo,
+      hasUserInfo: true
     })
   },
-  bindGoToPage:function(){
-        wx.navigateTo({
-      url: '../home/home',
-      success: function(res) {},
-      fail: function(res) {},
-      complete: function(res) {},
-    })
-  },
-  GoTs:function(){
-        wx.navigateTo({
-      url: '../ts/ts',
-      success: function(res) {},
-      fail: function(res) {},
-      complete: function(res) {},
-    })
-  },
-  gonavleft:function(){
-        wx.navigateTo({
-          url: '../navleft/navleft',
-      success: function(res) {},
-      fail: function(res) {},
-      complete: function(res) {},
+
+  getData: function (url) {
+    wx.request({
+      url: url, //仅为示例，并非真实的接口地址
+      data: {
+        x: '',
+        y: ''
+      },
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success: (res) => {
+        console.log(res.data)
+        this.setData({
+          swipers: res.data
+        })
+        console.log(res.data)
+      }
     })
   }
+
+
+
 })

@@ -1,14 +1,67 @@
 <!--index.wxml-->
 <view class="container">
-  <view  bindtap="bindViewTap" class="userinfo">
-    <image class="userinfo-avatar" src="{{userInfo.avatarUrl}}" background-size="cover"></image>
-    <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+
+  <!-- ad -->
+  <swiper indicator-dots="true" autoplay="true" interval="3000" duration="1000">
+    <block wx:for="{{swipers}}" wx:key="{{item.ID}}">
+      <swiper-item>
+        <image mode='aspectFit' src="http://wcqt.bid{{item.Image}}" class="swiper-image" />
+      </swiper-item>
+    </block>
+  </swiper>
+ 
+  <!-- grids -->
+  <view class='grid-box'>
+    <block wx:for="{{grids}}" wx:key="{{item.ID}}">
+      <navigator url="#" class='grid-item'>
+        <image class="grid-image" src="http://wcqt.bid{{item.Image}}" />
+        <text>{{item.Name}}</text>
+      </navigator>
+    </block>
   </view>
-  <!-- <button></button> -->
-  <button  bindtap="gonavleft">go to navleft</button>
-  <button type="primary" bindtap="bindGoToPage">go to pageinfo</button>
-  <button type="primary" bindtap="GoTs">go to ts</button>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
+
+  <!-- body -->
+  <!-- <view class='body-box'>
+    <block wx:for='{{goods}}' wx:key='{{item.ID}}'>
+      <view class='body-item'>
+        <image class='bd-image' src='http://wcqt.bid{{item.Image}}' />
+        <view>{{item.Name}}</view>
+        <view>{{item.List}}</view>
+        <view class='price'>{{item.Pric}}</view>
+      </view>
+    </block>
+  </view> -->
+
+
+  <!--wzui card  -->
+  <view class="zan-panel" wx:for='{{products}}' wx:key='{{item.ID}}'>
+    <view class="zan-card" >
+      <view class="zan-card__thumb">
+        <image class="zan-card__img" src='http://wcqt.bid{{item.Image}}' mode="aspectFit"></image>
+      </view>
+      <view class="zan-card__detail">
+        <view class="zan-card__detail-row">
+          <view class="zan-card__right-col zan-c-red">¥ {{item.Pric}}</view>
+          <view class="zan-card__left-col zan-ellipsis--l2">
+            {{item.Name}}【有sku】
+          </view>
+        </view>
+
+        <view class="zan-card__detail-row zan-c-gray-darker">
+          <view class="zan-card__right-col zan-c-green">x2</view>
+          <view class="zan-card__left-col">
+            {{item.List}} 50%
+          </view>
+        </view>
+
+        <view class="zan-card__detail-row zan-c-gray-darker">
+          <view class="zan-card__left-col zan-c-red">已发货</view>
+        </view>
+      </view>
+    </view>
   </view>
+
+
+
+
 </view>

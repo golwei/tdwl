@@ -1,0 +1,42 @@
+<view class='page'>
+  <view class='left'>
+    <view wx:for="{{categories}}" wx:key="*this" class="weui-cells weui-cells_after-title">
+      <view class="weui-cell weui-cell_access" hover-class="weui-cell_active">
+        <view class="weui-cell__bd">{{item.Name}}</view>
+        <view class="weui-cell__ft weui-cell__ft_in-access"></view>
+      </view>
+
+    </view>
+  </view>
+  <!-- 内容 -->
+  <view class='right'>
+    <!-- card -->
+    <view class="zan-panel" wx:for="{{products}}">
+      <view class="zan-card" >
+        <view class="zan-card__thumb">
+          <image class="zan-card__img" src="http://wcqt.bid{{item.Image}}" mode="aspectFit"></image>
+        </view>
+        <view class="zan-card__detail">
+          <view class="zan-card__detail-row">
+            <view class="zan-card__right-col">¥ {{item.Pric}}</view>
+            <view class="zan-card__left-col zan-ellipsis--l2">
+              {{item.Name}}
+            </view>
+          </view>
+
+          <view class="zan-card__detail-row zan-c-gray-darker">
+            <view class="zan-card__right-col">x2</view>
+            <view class="zan-card__left-col">
+              3000克 50%
+            </view>
+          </view>
+
+          <view class="zan-card__detail-row zan-c-gray-darker">
+            <view class="zan-card__left-col zan-c-red">已发货</view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <!-- card end -->
+  </view>
+</view>

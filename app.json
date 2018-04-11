@@ -1,15 +1,29 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/logs/logs",
-    "pages/home/home",
-    "pages/ts/ts",
-    "pages/navleft/navleft"
+    "pages/list/list",
+    "pages/logs/logs"
   ],
+  "tabBar": {
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "images/icon_nav_nav.png",
+        "selectedIconPath": "images/icon_nav_nav.png"
+      },
+      {
+        "pagePath": "pages/list/list",
+        "text": "分类",
+        "iconPath": "images/icon_nav_nav.png",
+        "selectedIconPath": "images/icon_nav_nav.png"
+      }
+    ]
+  },
   "window": {
     "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "gainsboro",
-    "navigationBarTitleText": "天盾网络",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
     "navigationBarTextStyle": "black"
   }
 }
